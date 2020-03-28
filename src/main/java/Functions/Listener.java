@@ -5,8 +5,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
 import static Users.Admin.deleteMessage;
-import static Users.Bot.angryFaceEmoji;
-import static Users.User.rollADice;
+import static Users.User.*;
 import static Validations.Validations.GetRoleFromUser;
 
 public class Listener implements MessageCreateListener {
@@ -22,8 +21,8 @@ public class Listener implements MessageCreateListener {
 
         // region User
 
-        rollADice(event, userMessage);
-        angryFaceEmoji(event, userMessage);
+        help(event, userMessage);
+        assignStory(event, userMessage);
 
         //endregion
 
