@@ -1,14 +1,21 @@
 package Users;
 
+import ffxiv.apiclient.RetrofitFFXIV;
+import ffxiv.apiclient.ServiceFFXIV;
+import ffxiv.dtos.ItemResponse;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.entity.permission.Role;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static Validations.Validations.*;
+import static java.lang.Integer.parseInt;
 
 import java.util.List;
 
 public class User {
-
+    public static ServiceFFXIV serviceFFXIV = RetrofitFFXIV.getInstance().getService();
     public static void help(final MessageCreateEvent b, final String u)
     {
         if(u.equalsIgnoreCase("!help"))
@@ -57,4 +64,33 @@ public class User {
     {
 
     }
+
+    // region FFXIV
+    public static void getItemById(final MessageCreateEvent event, final String userMessage){
+        if(MessageStartsWith(userMessage, "!item")){
+            if(IsFollowedNumber(userMessage)){
+                int itemId = parseInt(userMessage.split(" ")[1]);
+                 serviceFFXIV.getItem(itemId).enqueue(new Callback<ItemResponse>() {
+                     @Override
+                     public void onResponse(Call<ItemResponse> call, Response<ItemResponse> response) {
+                         ItemResponse itemResponse = new ItemResponse();
+                         if(response.isSuccessful()){
+                             itemResponse = response.body();
+                             event.getChannel().sendMessage("item name: " + itemResponse.Name);
+                         } else {
+                             event.getChannel().sendMessage("error:\n```json \n" + response.errorBody() + " \n```");
+                         }
+                     }
+                     @Override
+                     public void onFailure(Call<ItemResponse> call, Throwable t) {
+                         event.getChannel().sendMessage("failure:\n`` " + t.getMessage() + " \n``");
+                     }
+                 });
+            }
+            else{
+                event.getChannel().sendMessage("errorParam: ``NaN``");
+            }
+        }
+    }
+    // endregion
 }

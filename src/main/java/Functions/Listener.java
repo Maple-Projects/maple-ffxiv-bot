@@ -23,6 +23,7 @@ public class Listener implements MessageCreateListener {
 
         help(event, userMessage);
         assignStory(event, userMessage);
+        getItemById(event, userMessage);
 
         //endregion
 
