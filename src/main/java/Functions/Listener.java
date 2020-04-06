@@ -4,6 +4,7 @@ import org.javacord.api.entity.message.Message;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
+import static Utils.InfoMessage.*;
 import static Users.Admin.deleteMessage;
 import static Users.User.*;
 import static Validations.Validations.GetRoleFromUser;
@@ -20,10 +21,13 @@ public class Listener implements MessageCreateListener {
         // endregion
 
         // region User
+        if(!getCommand(userMessage).equals("")){
+            help(event, userMessage);
+            assignStory(event, userMessage);
+            getItemById(event, userMessage);
+            getFreeCompanyInfo(event, userMessage);
+        }
 
-        help(event, userMessage);
-        assignStory(event, userMessage);
-        getItemById(event, userMessage);
 
         //endregion
 

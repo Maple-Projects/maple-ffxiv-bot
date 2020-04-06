@@ -3,13 +3,18 @@ package Users;
 import ffxiv.apiclient.RetrofitFFXIV;
 import ffxiv.apiclient.ServiceFFXIV;
 import ffxiv.dtos.ItemResponse;
+import ffxiv.dtos.SearchFCResponse;
+import ffxiv.dtos.SearchFCResult;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.entity.permission.Role;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static Utils.InfoMessage.getCommand;
+import static Utils.InfoMessage.getParams;
 import static Validations.Validations.*;
+import static Validations.Validations.MessageStartsWith;
 import static java.lang.Integer.parseInt;
 
 import java.util.List;
@@ -91,6 +96,43 @@ public class User {
                 event.getChannel().sendMessage("errorParam: ``NaN``");
             }
         }
+    }
+
+    public static void getFreeCompanyInfo(MessageCreateEvent event, final String userMessage){
+        String command = getCommand(userMessage);
+        if(!(command.equals("fc") || command.equals("freecompany"))){
+            String fcName, server;
+            List<String> params;
+            //Si le name est entre ""
+            if(userMessage.contains("\"")){
+                params = getParams(userMessage, "\"");
+            } else {
+                params = getParams(userMessage);
+            }
+            fcName = params.get(0);
+            //Si il y a un param après le name (server)
+            if(params.size() > 1){
+                server = params.get(1).trim();
+            } else {
+                server = null;
+            }
+            serviceFFXIV.getFreeCompanyByName(fcName, server).enqueue(new Callback<SearchFCResponse>() {
+                @Override
+                public void onResponse(Call<SearchFCResponse> call, Response<SearchFCResponse> response) {
+                    if(response.isSuccessful()){
+                        String name = response.body().Results.get(0).Name;
+                        String id = response.body().Results.get(0).ID;
+                        event.getChannel().sendMessage("Name: " + name + "\n Id: " + id);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<SearchFCResponse> call, Throwable t) {
+
+                }
+            });
+        }
+
     }
     // endregion
 }
