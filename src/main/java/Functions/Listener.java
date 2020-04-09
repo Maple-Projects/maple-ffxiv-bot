@@ -26,6 +26,7 @@ public class Listener implements MessageCreateListener {
         getItemById(event, userMessage);
         getCharacterBySearch(event, userMessage);
         getMateriaMeldingInfo(event, userMessage);
+        vocabulary(event, userMessage);
 
         // endregion
 

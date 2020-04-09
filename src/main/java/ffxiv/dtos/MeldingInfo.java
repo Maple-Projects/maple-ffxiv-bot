@@ -105,22 +105,19 @@ public class MeldingInfo {
 
     EmbedBuilder dragoon = new EmbedBuilder()
             .setTitle("Dragoon")
-            .addField("Direct Hit", "Test")
-            .addField("Determination", "Test")
-            .addField("Critical Hit", "Test")
+            .addField("Direct Hit", "Focus Direct Hit First")
+            .addField("Critical Hit", "Get crit if Direct Hit is already capped")
             .setThumbnail("https://xivapi.com/cj/1/dragoon.png");
 
     EmbedBuilder ninja = new EmbedBuilder()
             .setTitle("Ninja")
-            .addField("Direct Hit", "Test")
-            .addField("Determination", "Test")
-            .addField("Critical Hit", "Test")
+            .addField("Critical Hit", "Critical hit goes well with your jutsus")
+            .addField("Direct Hit", "If you are already maxed out in crit, just go Direct Hit.")
             .setThumbnail("https://xivapi.com/cj/1/ninja.png");
     EmbedBuilder monk = new EmbedBuilder()
             .setTitle("Monk")
-            .addField("Direct Hit", "Test")
-            .addField("Determination", "Test")
-            .addField("Critical Hit", "Test")
+            .addField("Direct Hit", "Just go Full Direct hit")
+            .addField("Critical Hit", "Go crit if Direct hit is already maxed out")
             .setThumbnail("https://xivapi.com/cj/1/monk.png");
 /* Methods */
     public EmbedBuilder getSummoner() {

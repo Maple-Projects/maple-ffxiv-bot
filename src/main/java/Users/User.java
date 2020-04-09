@@ -191,5 +191,15 @@ public class User {
             }
         }
     }
+
+    public static void vocabulary(final MessageCreateEvent event, final String userMessage) {
+        if (MessageStartsWith(userMessage, "!vocabulary")){
+            String dictionary = "***GCD***: Global cooldown. Basically your recast time \n"
+            + "***Adds***: Additional hostile mobs \n" + "***OGCD***: Off global cooldown. Action that ignores your global cooldown. e.g: Danger zone on gunbreaker. \n"
+            + "***Cleave***: Basically a tank buster, but AoE. This is exactly why you shouldn't be near the main tank";
+            event.getChannel().sendMessage(dictionary);
+        }
+        
+    }
     // endregion
 }
