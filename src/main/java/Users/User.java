@@ -25,7 +25,7 @@ public class User {
         }
     }
 
-    public static void assignStory(final MessageCreateEvent b, final String u)
+    public static void assignStory(MessageCreateEvent b, String u)
     {
         if(MessageStartsWith(u, "!story"))
         {
@@ -34,12 +34,36 @@ public class User {
                 String expansion = u.split(" ")[1].toLowerCase();
                 List<Role> allRoles = b.getServer().get().getRoles();
                 for (Role role : allRoles) {
+                    
+                    if(IsAllStoryRole(role))
+                        b.getMessageAuthor().asUser().get().removeRole(role);
+
                     if(IsInCaseStoryRole(expansion, role))
                     {
-                        // ToDo: Won't remove
-                        if(IsAllStoryRole(role))
-                            b.getMessageAuthor().asUser().get().removeRole(role);
+                        b.getMessageAuthor().asUser().get().addRole(role);
+                        b.getMessage().addReaction("👌");
+                    }
 
+                }
+            }
+        }
+    }
+
+    public static void assignMainClassType(MessageCreateEvent b, String u)
+    {
+        if(MessageStartsWith(u, "!main"))
+        {
+            if(IsFollowedString(u))
+            {
+                String classType = u.split(" ")[1].toLowerCase();
+                List<Role> allRoles = b.getServer().get().getRoles();
+                for (Role role : allRoles) {
+
+                    if(IsAllMainClassType(role))
+                        b.getMessageAuthor().asUser().get().removeRole(role);
+
+                    if(IsInMainClassType(role, classType))
+                    {
                         b.getMessageAuthor().asUser().get().addRole(role);
                         b.getMessage().addReaction("👌");
                     }
@@ -48,13 +72,26 @@ public class User {
         }
     }
 
-    public static void assignMainClassType()
+    public static void assignSecondaryClassType(MessageCreateEvent b, String u)
     {
+        if(MessageStartsWith(u, "!sec"))
+        {
+            if(IsFollowedString(u))
+            {
+                String classType = u.split(" ")[1].toLowerCase();
+                List<Role> allRoles = b.getServer().get().getRoles();
+                for (Role role : allRoles) {
 
-    }
+                    if(IsAllSecClassType(role))
+                        b.getMessageAuthor().asUser().get().removeRole(role);
 
-    public static void assignSecondaryClassType()
-    {
-
+                    if(IsInSecClassType(role, classType))
+                    {
+                        b.getMessageAuthor().asUser().get().addRole(role);
+                        b.getMessage().addReaction("👌");
+                    }
+                }
+            }
+        }
     }
 }

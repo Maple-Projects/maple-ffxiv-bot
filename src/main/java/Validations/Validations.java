@@ -62,4 +62,58 @@ public class Validations {
         
         return false;
     }
+
+    public static boolean IsAllMainClassType(Role role)
+    {
+        return (role.getName().equals("DPS Main") || 
+        role.getName().equals("Healer Main") || 
+        role.getName().equals("Tank Main"));
+    }
+
+    public static boolean IsInMainClassType(Role role, String pCase)
+    {
+        if (pCase.equals("dps"))
+        {
+            return role.getName().equals("DPS Main");
+        }
+
+        if(pCase.equals("healer"))
+        {
+           return role.getName().equals("Healer Main");
+        }
+
+        if(pCase.equals("tank"))
+        {
+            return role.getName().equals("Tank Main");
+        }
+
+        return false;
+    }
+
+    public static boolean IsAllSecClassType(Role role)
+    {
+        return (role.getName().equals("DPS Secondary") || 
+        role.getName().equals("Healer Secondary") || 
+        role.getName().equals("Tank Secondary"));
+    }
+
+    public static boolean IsInSecClassType(Role role, String pCase)
+    {
+        if (pCase.equals("dps"))
+        {
+            return role.getName().equals("DPS Secondary");
+        }
+
+        if(pCase.equals("healer"))
+        {
+           return role.getName().equals("Healer Secondary");
+        }
+
+        if(pCase.equals("tank"))
+        {
+            return role.getName().equals("Tank Secondary");
+        }
+
+        return false;
+    }
 }
