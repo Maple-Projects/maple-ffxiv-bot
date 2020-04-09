@@ -25,6 +25,7 @@ public class Listener implements MessageCreateListener {
         assignStory(event, userMessage);
         getItemById(event, userMessage);
         getCharacterBySearch(event, userMessage);
+        getMateriaMeldingInfo(event, userMessage);
 
         // endregion
 

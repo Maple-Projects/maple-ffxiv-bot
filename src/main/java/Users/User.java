@@ -4,7 +4,9 @@ import ffxiv.apiclient.RetrofitFFXIV;
 import ffxiv.apiclient.ServiceFFXIV;
 import ffxiv.dtos.CharacterByNameResponse;
 import ffxiv.dtos.ItemResponse;
+import ffxiv.dtos.MeldingInfo;
 import ffxiv.dtos.Result;
+import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.entity.permission.Role;
@@ -120,6 +122,72 @@ public class User {
                 
             } else {
                 event.getChannel().sendMessage("errorParam: ``NaN``");
+            }
+        }
+    }
+
+    public static void getMateriaMeldingInfo(final MessageCreateEvent event, final String userMessage) {
+        if (MessageStartsWith(userMessage, "!meld")) {
+            if (IsFollowedString(userMessage)) {
+                String job = userMessage.split(" ")[1].toLowerCase();
+                MeldingInfo embed = new MeldingInfo();
+                switch (job) {
+                    case "scholar":
+                        event.getChannel().sendMessage(embed.getScholar());
+                        break;
+                    case "summoner":
+                        event.getChannel().sendMessage(embed.getSummoner());
+                        break;
+                    case "whitemage":
+                        event.getChannel().sendMessage(embed.getWhitemage());
+                        break;
+                    case "astrologian":
+                        event.getChannel().sendMessage(embed.getAstrologian());
+                        break;
+                    case "darkknight":
+                        event.getChannel().sendMessage(embed.getDarkknight());
+                        break;
+                    case "warrior":
+                        event.getChannel().sendMessage(embed.getWarrior());
+                        break;
+                    case "paladin":
+                        event.getChannel().sendMessage(embed.getPaladin());
+                        break;
+                    case "gunbreaker":
+                        event.getChannel().sendMessage(embed.getGunbreaker());
+                        break;
+                    case "dancer":
+                        event.getChannel().sendMessage(embed.getDancer());
+                        break;
+                    case "bard":
+                        event.getChannel().sendMessage(embed.getBard());
+                        break;
+                    case "machinist":
+                        event.getChannel().sendMessage(embed.getMachinist());
+                        break;
+                    case "blackmage":
+                        event.getChannel().sendMessage(embed.getBlackmage());
+                        break;
+                    case "redmage":
+                            event.getChannel().sendMessage(embed.getRedmage());
+                            break;
+                    case "bluemage":
+                        event.getChannel().sendMessage("Blue mage is not able to do EndGame content. #SorryNotSorry");
+                        break;
+                    case "samurai":
+                        event.getChannel().sendMessage(embed.getSamurai());
+                        break;
+                    case "ninja":
+                        event.getChannel().sendMessage(embed.getNinja());
+                        break;
+                    case "dragoon":
+                        event.getChannel().sendMessage(embed.getDragoon());
+                        break;
+                    case "monk":
+                        event.getChannel().sendMessage(embed.getMonk());
+                        break;
+                }
+
             }
         }
     }
