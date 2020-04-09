@@ -6,6 +6,10 @@ import org.javacord.api.event.message.MessageCreateEvent;
 public class Validations {
 
     public static boolean IsFollowedNumber(final String m) {
+        return (m.split(" ").length > 1 && m.split(" ")[1].matches("^[1-9][0-9]*$"));
+    }
+
+    public static boolean IsFollowedNumberUnder100(final String m) {
         return (m.split(" ").length > 1 && m.split(" ")[1].matches("^[1-9][0-9]?$|^100$"));
     }
 

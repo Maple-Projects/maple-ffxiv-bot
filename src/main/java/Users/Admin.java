@@ -10,7 +10,7 @@ public class Admin {
     {
         if(MessageStartsWith(u, "!clear"))
         {
-            if(IsFollowedNumber(u) && IsFollowedNumberNotEmpty(u))
+            if(IsFollowedNumberUnder100(u) && IsFollowedNumberNotEmpty(u))
             {
                 e.getMessage().addReaction("\uD83D\uDC4D");
                 try {

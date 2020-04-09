@@ -23,17 +23,18 @@ public class Listener implements MessageCreateListener {
 
         help(event, userMessage);
         assignStory(event, userMessage);
+        getItemById(event, userMessage);
+        getCharacterBySearch(event, userMessage);
 
-        //endregion
+        // endregion
 
         // region Admin
 
-        if(GetRoleFromUser(event))
-        {
+        if (GetRoleFromUser(event)) {
             deleteMessage(event, userMessage);
         }
 
-        //endregion
+        // endregion
 
     }
 }
