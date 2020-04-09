@@ -22,7 +22,11 @@ public class Listener implements MessageCreateListener {
         // region User
 
         help(event, userMessage);
+        ffhelp(event, userMessage);
         assignStory(event, userMessage);
+        assignMainClassType(event, userMessage);
+        assignSecondaryClassType(event, userMessage);
+        assignFF14(event, userMessage);
         getItemById(event, userMessage);
         getCharacterBySearch(event, userMessage);
 

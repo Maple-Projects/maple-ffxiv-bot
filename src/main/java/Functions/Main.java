@@ -1,6 +1,5 @@
 package Functions;
 
-import ffxiv.apiclient.RetrofitFFXIV;
 import org.javacord.api.DiscordApiBuilder;
 
 public class Main {

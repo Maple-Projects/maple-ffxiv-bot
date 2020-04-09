@@ -20,9 +20,21 @@ import java.util.List;
 public class User {
     public static ServiceFFXIV serviceFFXIV = RetrofitFFXIV.getInstance().getService();
 
-    public static void help(final MessageCreateEvent b, final String u) {
+    // TODO Fix help command
+
+    public static void help(MessageCreateEvent b, String u) {
         if (u.equalsIgnoreCase("!help")) {
-            final String message = "Hello! \n" + "Theses are the commands: \n" + "(**not** case sensitive) \n"
+            String message = "Hello! \n" + "Theses are the commands: \n" + "(**not** case sensitive) \n"
+                    + "**!ffxiv**: Gain access to the Final Fantasy channels. \n" +
+                    "*[...]*";
+
+            b.getChannel().sendMessage(message);
+        }
+    }
+
+    public static void ffhelp(MessageCreateEvent b, String u) {
+        if (u.equalsIgnoreCase("!help ff")) {
+            String message = "Hello! \n" + "Theses are the commands for FF14: \n" + "(**not** case sensitive) \n"
                     + "**!story + [ARR, HW, SB, SHB, END]**: Set every roles until the mentionned story. \n"
                     + "**!main + [TANK, HEALER, DPS]**: Set main class. You can only have one. \n"
                     + "**!sec + [TANK, HEALER, DPS]**: Set secondary class. \n" + "*[...]*";
@@ -98,6 +110,16 @@ public class User {
                     }
                 }
             }
+        }
+    }
+
+    public static void assignFF14(MessageCreateEvent b, String u)
+    {
+        if(MessageStartsWith(u, "!ffxiv"))
+        {
+            Role ffRole = b.getServer().get().getRolesByName("FF14").get(0);
+            b.getMessageAuthor().asUser().get().addRole(ffRole);
+            b.getMessage().addReaction("👌");
         }
     }
 
